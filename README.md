@@ -1,2 +1,2 @@
-# symbiosis
-Scripts related to Legume-Rhizobia-Symbiosis paper (Riaz et al.,)
+# R scripts of Legume-Rhizobia-Symbiosis paper (Riaz et al.,)
+
