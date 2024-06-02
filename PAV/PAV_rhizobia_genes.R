@@ -143,27 +143,8 @@ highCorr_genes
 
 ###### STEP 5 : select genes presnt in clusters ##########
 
-#HC_candidates <- readRDS("HighConfidence_59Absentgenes.RDS")
-
-# corrected PA based on alignment for "WP_010967187","WP_013845919"
-
-# re-compute correlation between gene presence-absence and shoot biomass
-#cor_df <- data.frame(cor(t(HC_candidates[,c(2:21)]),traitData))
-#View(cor_df)
-
-#HC_highCorr_genes <- rownames(cor_df[abs(cor_df$ShootBiomass) >= 0.5,])
-#HC_highCorr_genes #resulted in 57 genes (two genes with corrected PA were removed because of low correlation)
-
-
-#HC_highCorr_57Absentgenes <- data.frame(t(HC_candidates[HC_highCorr_genes,c(2:21)]))
-#dim(HC_highCorr_57Absentgenes)
-#HC_highCorr_57Absentgenes <- readRDS("HC_highCorr_57Absentgenes.RDS")
-
-#HC_highCor_ClusterGenes <- HC_highCorr_57Absentgenes %>% select(-c("WP_010967204.1", "SM_RS20255", "SM_RS30605", "WP_010975890.1", "WP_015242546.1", "WP_010968014.1")) #include only genes that are part of ASSIGNED cluster of psymA, 6 clusters (51 genes)
-
 HC_highCor_ClusterGenes<-readRDS("HC_highCor_51ClusterGenes.RDS")
 View(HC_highCor_ClusterGenes)
-
 
 rownames(HC_highCor_ClusterGenes) <- gsub("DZA_","",rownames(HC_highCor_ClusterGenes))
 
@@ -232,7 +213,7 @@ rownames(traitData) <- gsub("DZA_","",rownames(traitData))
 
 
 
-### CLUSTER 2 (previously cluster 1)
+### CLUSTER 2
 cluster_2 <- c("WP_010967274.1", "WP_010967276.1","WP_010967277.1","SM_RS26160")
 cluster_2_df <- data.frame(HC_highCor_ClusterGenes[,cluster_2])
 cluster_2_df$rowSum <- rowSums(cluster_2_df)
@@ -264,7 +245,7 @@ p<-ggboxplot(cluster_2_df[, c(6, 7)], x = "Cluster2", y = "shootBiomass",
 ggsave("figs/cluster2_PAV_20strains.tiff",p, dpi = 600, device = "tiff", units = "in", width = 3.5, height = 3.6)
 
 
-### CLUSTER 3 (previously cluster 2)
+### CLUSTER 3
 cluster_3 <- c("WP_010967494.1", "WP_010967495.1", "WP_010967496.1", "WP_010967497.1", "WP_010967498.1", "WP_010967499.1", "WP_010967500.1", "WP_010967501.1", "WP_010967502.1")
 
 cluster_3_df <- data.frame(HC_highCor_ClusterGenes[,cluster_3])
@@ -295,9 +276,9 @@ HC_highCorr_genes_171strains <- readRDS("genePA_57genes_171strains.RDS")
 
 strains191_traitData <- readRDS("strains191_traitData.RDS")
 
-# t-test of biomass based on presence absence of cluster_2 and cluster_3
+# t-test of biomass based on presence-absence of cluster_2 and cluster_3
 
-### CLUSTER 2 (prev cluster 1)
+### CLUSTER 2
 cluster_2 <- c("WP_010967274.1", "WP_010967276.1","WP_010967277.1","SM_RS26160_WP_234826226.1")
 cluster_2_df <- data.frame(t(HC_highCorr_genes_171strains[cluster_2,]))
 cluster_2_df$rowSum <- rowSums(cluster_2_df)
@@ -327,7 +308,7 @@ ggsave("figs/cluster2_PAV_160strains.tiff",p, dpi = 600, device = "tiff", units 
 
 
 
-### CLUSTER 3 (prev cluster 2)
+### CLUSTER 3
 cluster_3 <- c("WP_010967494.1", "WP_010967495.1", "WP_010967496.1", "WP_010967497.1", "WP_010967498.1", "WP_010967499.1", "WP_010967500.1", "WP_010967501.1", "WP_010967502.1", "WP_028011575.1")
 
 cluster_3_df <- data.frame(t(HC_highCorr_genes_171strains[cluster_3,]))
