@@ -97,7 +97,7 @@ R_biomass_clusters <- pc %>%
     axis.text = element_text(size = 8)
   )
 
-ggsave("figures/Rhizobia_PCA.tiff",R_biomass_clusters,dpi = 600,units = "cm", width = 11,height = 9, bg = "white")
+ggsave("Rhizobia_PCA.tiff",R_biomass_clusters,dpi = 600,units = "cm", width = 11,height = 9, bg = "white")
 
 
 
@@ -182,14 +182,6 @@ M_biomass_clusters <- pc %>%
     axis.text = element_text(size = 8)
   )
 
-ggsave("figures/Medicago_top5000Genes_PCA.tiff",M_biomass_clusters,dpi = 600,units = "cm", width = 11,height = 9, bg = "white")
+ggsave("Medicago_top5000Genes_PCA.tiff",M_biomass_clusters,dpi = 600,units = "cm", width = 11,height = 9, bg = "white")
 
-
-
-# MULTI-PANEL FIGURE
-arng <- ggarrange(R_biomass_clusters, M_biomass_clusters,
-          labels = c("A", "B"),
-          ncol = 2, nrow = 1, align = "h",font.label = list(size = 8, color = "black", family = "Arial"))
-
-ggsave("figures/multi_panel_PCAs.tiff",arng,dpi = 600,units = "cm", width = 20,height = 9, bg = "white")
 
